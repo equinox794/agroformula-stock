@@ -24,6 +24,11 @@ export async function POST(req: NextRequest) {
 
   const supabase = await createClient()
 
+  if (!supabase) {
+    console.error('Failed to create Supabase client')
+    return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+  }
+
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
