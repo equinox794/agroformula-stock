@@ -1,0 +1,7 @@
+﻿# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://malvtksmbmhfrpufibbi.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1hbHZ0a3NtYm1oZnJwdWZpYmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxNzU3NjQsImV4cCI6MjA3NDc1MTc2NH0.6mLkj2rWaRy7k8TP375N8Nie_fqE5QSkdJcriohtpBs
+SUPABASE_SERVICE_ROLE_KEY=sb_secret_zAGuXrQKIrglIpkZ95WJTA_R9oBXZEB
+
+# App Configuration
+NEXT_PUBLIC_APP_URL=http://localhost:3000

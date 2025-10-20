@@ -1,0 +1,118 @@
+{
+  "navbar": {
+    "logo": "AgroFormula",
+    "login": "Giriş Yap",
+    "signup": "Üye Ol"
+  },
+  "hero": {
+    "title": "Modern Stok Yönetim Sistemi",
+    "subtitle": "Çok depolu, RBAC'lı, Stripe entegreli stok yönetim SaaS uygulaması.",
+    "description": "İşletmenizi dijitalleştirin, stoklarınızı kontrol altına alın.",
+    "startNow": "Hemen Başla",
+    "demoLogin": "Demo Giriş"
+  },
+  "features": {
+    "title": "Özellikler",
+    "multiWarehouse": {
+      "title": "Çok Depolu Stok",
+      "description": "Sınırsız depo oluşturun, stoklarınızı depo bazında takip edin"
+    },
+    "warehouseManagement": {
+      "title": "Depo Yönetimi",
+      "description": "Depolar arası transfer, stok hareketleri ve raporlama"
+    },
+    "advancedReports": {
+      "title": "Gelişmiş Raporlar",
+      "description": "Detaylı analizler, kritik stok uyarıları ve trend analizi"
+    },
+    "secureAccess": {
+      "title": "Güvenli Erişim",
+      "description": "RBAC yetkilendirme, güvenli veri saklama ve audit logları"
+    },
+    "teamManagement": {
+      "title": "Ekip Yönetimi",
+      "description": "Çoklu kullanıcı desteği, rol bazlı erişim kontrolü"
+    },
+    "stripeIntegration": {
+      "title": "Stripe Entegrasyonu",
+      "description": "Güvenli ödeme sistemi, abonelik yönetimi ve faturalandırma"
+    }
+  },
+  "pricing": {
+    "title": "Fiyatlandırma",
+    "starter": {
+      "title": "Starter",
+      "description": "Küçük işletmeler için",
+      "price": "$29",
+      "period": "/ay",
+      "features": [
+        "5 depo",
+        "100 ürün",
+        "Temel raporlar",
+        "E-posta desteği"
+      ]
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "Büyüyen işletmeler için",
+      "price": "$99",
+      "period": "/ay",
+      "features": [
+        "Sınırsız depo",
+        "Sınırsız ürün",
+        "Gelişmiş raporlar",
+        "API erişimi",
+        "Öncelikli destek"
+      ]
+    },
+    "business": {
+      "title": "Business",
+      "description": "Kurumsal çözümler",
+      "price": "$299",
+      "period": "/ay",
+      "features": [
+        "Tüm Pro özellikleri",
+        "Özel entegrasyonlar",
+        "7/24 destek",
+        "Özel eğitim"
+      ]
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 AgroFormula. Tüm hakları saklıdır."
+  },
+  "sidebar": {
+    "home": "Ana Sayfa",
+    "stock": "Stok",
+    "warehouses": "Depolar",
+    "products": "Ürünler",
+    "team": "Ekip",
+    "billing": "Faturalandırma",
+    "settings": "Ayarlar"
+  },
+  "topbar": {
+    "search": "Ara",
+    "dashboard": "Dashboard"
+  },
+  "stock": "Stok",
+  "new_product": "Yeni Ürün",
+  "search_products": "Ürün ara...",
+  "critical_stock": "Kritik Stok",
+  "filter": "Filtre",
+  "product_code": "Ürün Kodu",
+  "product_name": "Ürün Adı",
+  "type": "Tip",
+  "unit": "Birim",
+  "vat_rate": "KDV Oranı",
+  "min_stock": "Min. Stok",
+  "kg_price": "Kg Fiyatı",
+  "total_tl": "Toplam TL",
+  "actions": "İşlemler",
+  "loading_products": "Ürünler yükleniyor...",
+  "no_products_found": "Ürün bulunamadı",
+  "showing_results": "{{start}}-{{end}} arası {{total}} sonuç gösteriliyor",
+  "cancel": "İptal",
+  "final": "Final Ürün",
+  "semifinished": "Yarı Mamul",
+  "raw": "Hammadde"
+}

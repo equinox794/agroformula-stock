@@ -1,0 +1,44 @@
+/* Tek kaynaklı tema değişkenleri - Sadece bu dosyadan değiştirilebilir */
+:root {
+  /* Ana renkler - koyu tema */
+  --bg: #0b1220;        /* ana arka plan */
+  --panel: #111827;     /* kart/panel arka planı */
+  --muted: #1f2937;     /* muted arka plan */
+  
+  /* Metin renkleri */
+  --text: #e5e7eb;      /* ana metin */
+  --text-muted: #9ca3af; /* ikincil metin */
+  
+  /* Aksan renkleri */
+  --primary: #2563eb;   /* mavi aksan buton/aktif */
+  --accent: #374151;    /* hover/aktif durumlar */
+  
+  /* Durum renkleri */
+  --danger: #ef4444;    /* kritik stok, hata */
+  --success: #10b981;   /* başarı, onay */
+  --warning: #f59e0b;   /* uyarı */
+  
+  /* Sınır ve ayırıcılar */
+  --border: #232b3a;    /* sınır çizgileri */
+  
+  /* Gölge ve efektler */
+  --shadow: rgba(0, 0, 0, 0.25);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
+}
+
+/* Light tema desteği (gelecekte kullanım için) */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --panel: #f9fafb;
+  --muted: #f3f4f6;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --primary: #2563eb;
+  --accent: #e5e7eb;
+  --danger: #dc2626;
+  --success: #059669;
+  --warning: #d97706;
+  --border: #d1d5db;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,118 @@
+{
+  "navbar": {
+    "logo": "AgroFormula",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "hero": {
+    "title": "Modern Inventory Management System",
+    "subtitle": "Multi-warehouse, RBAC-enabled, Stripe integrated SaaS application.",
+    "description": "Digitize your business, take control of your inventory.",
+    "startNow": "Start Now",
+    "demoLogin": "Demo Login"
+  },
+  "features": {
+    "title": "Features",
+    "multiWarehouse": {
+      "title": "Multi-Warehouse Stock",
+      "description": "Create unlimited warehouses, track your inventory by warehouse"
+    },
+    "warehouseManagement": {
+      "title": "Warehouse Management",
+      "description": "Inter-warehouse transfers, stock movements and reporting"
+    },
+    "advancedReports": {
+      "title": "Advanced Reports",
+      "description": "Detailed analytics, critical stock alerts and trend analysis"
+    },
+    "secureAccess": {
+      "title": "Secure Access",
+      "description": "RBAC authorization, secure data storage and audit logs"
+    },
+    "teamManagement": {
+      "title": "Team Management",
+      "description": "Multi-user support, role-based access control"
+    },
+    "stripeIntegration": {
+      "title": "Stripe Integration",
+      "description": "Secure payment system, subscription management and billing"
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "starter": {
+      "title": "Starter",
+      "description": "For small businesses",
+      "price": "$29",
+      "period": "/month",
+      "features": [
+        "5 warehouses",
+        "100 products",
+        "Basic reports",
+        "Email support"
+      ]
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "For growing businesses",
+      "price": "$99",
+      "period": "/month",
+      "features": [
+        "Unlimited warehouses",
+        "Unlimited products",
+        "Advanced reports",
+        "API access",
+        "Priority support"
+      ]
+    },
+    "business": {
+      "title": "Business",
+      "description": "Enterprise solutions",
+      "price": "$299",
+      "period": "/month",
+      "features": [
+        "All Pro features",
+        "Custom integrations",
+        "24/7 support",
+        "Custom training"
+      ]
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 AgroFormula. All rights reserved."
+  },
+  "sidebar": {
+    "home": "Home",
+    "stock": "Stock",
+    "warehouses": "Warehouses",
+    "products": "Products",
+    "team": "Team",
+    "billing": "Billing",
+    "settings": "Settings"
+  },
+  "topbar": {
+    "search": "Search",
+    "dashboard": "Dashboard"
+  },
+  "stock": "Stock",
+  "new_product": "New Product",
+  "search_products": "Search products...",
+  "critical_stock": "Critical Stock",
+  "filter": "Filter",
+  "product_code": "Product Code",
+  "product_name": "Product Name",
+  "type": "Type",
+  "unit": "Unit",
+  "vat_rate": "VAT Rate",
+  "min_stock": "Min. Stock",
+  "kg_price": "Kg Price",
+  "total_tl": "Total TL",
+  "actions": "Actions",
+  "loading_products": "Loading products...",
+  "no_products_found": "No products found",
+  "showing_results": "Showing {{start}} to {{end}} of {{total}} results",
+  "cancel": "Cancel",
+  "final": "Final Product",
+  "semifinished": "Semi-Finished",
+  "raw": "Raw Material"
+}

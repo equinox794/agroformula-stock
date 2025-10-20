@@ -1,0 +1,5 @@
+Always write code in TypeScript using Next.js App Router, Supabase client/server helpers, and modular folder structure under /modules.
+Keep code consistent with shadcn/ui + Tailwind dark theme (Bioplant SaaS style).
+---
+alwaysApply: true
+---

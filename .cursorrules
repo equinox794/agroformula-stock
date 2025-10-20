@@ -1,0 +1,103 @@
+# AgroFormula Projesi - Cursor Kuralları
+
+## Dil & Yazım
+- Yanıt ve kod yorumları TÜRKÇE.
+- Değişken/fonksiyon isimleri İngilizce; UI metinleri Türkçe.
+
+## Mimari & Stack
+- Next.js 14 App Router, TypeScript strict.
+- Tailwind + shadcn/ui + lucide-react.
+- Supabase (Postgres + Auth + RLS), Stripe (aylık abonelik).
+- Server Components öncelikli; Client Components sadece gerektiğinde.
+
+## Çoklu Organizasyon (Multi-tenant)
+- Tüm tablolar org_id içerir; RLS tüm erişimi org_id + membership üzerinden sınırlar.
+- Rollerin anlamı: admin=full, manager=write, viewer=read-only.
+- Server Actions ve API’lerde `rbac.can(user, action, org_id)` kontrolü zorunlu.
+
+## Dosya Düzeni
+- /app            → sayfalar & route handlers
+- /components     → yeniden kullanılabilir UI
+- /modules/*      → auth, billing, org, warehouse, product, stock
+- /lib            → supabase client/server, rbac, utils, zod-schemas
+- /styles         → globals.css, theme.css (tek renk kaynağı)
+- /types          → paylaşılan TS tipleri
+
+## Tema & Stil (TEK KAYNAK)
+- **Sabit hex RENK KULLANMA.** Yalnız `styles/theme.css` değişkenlerini kullan (`bg-panel`, `text-text`, `primary` vb.).
+- Stil değiştiğinde (örn. kırmızı→mavi) **eski sınıfları KALDIR**; duplicate bırakma.
+- Tailwind sınıf tokenizasyonu: renk adları yerine tema token’ı.
+- Eski komponent/stillerin temizliği: ts-prune + eslint-unused-imports ile **dead code bırakma**.
+
+## Route Kuralları
+- Aynı yolu üreten iki page oluşturma. Çakışma olursa `/` sadece redirect için kullan.
+- Route groups net olsun: `(dashboard)` içinde `/stock`, `/products`, `/warehouses`, `/billing`.
+
+## Güvenlik
+- Tüm giriş veri doğrulaması Zod ile.
+- CSRF/XSS önlemleri, header’lar ve escaping.
+- Stripe webhook’larını `STRIPE_WEBHOOK_SECRET` ile doğrula; idempotency uygula.
+- Secrets sadece env ile; repo’ya .env koyma.
+
+## Supabase
+- RLS açık; policies:
+  - SELECT: user ∈ memberships(org_id)
+  - INSERT/UPDATE/DELETE: role ∈ ('admin','manager')
+- stock_movements trigger: stocks snapshot’ını güncel tut (in/out/transfer).
+
+## Ödeme/Abonelik
+- Planlar: Starter, Pro, Business (aylık). Webhook → subscriptions tablosu.
+- Abonelik aktif değilse write aksiyonları kilitli (banner + disabled).
+
+## UI/UX
+- Koyu tema, responsive.
+- Loading/skeleton, boş durumlar, anlaşılır hata mesajları.
+- Sidebar solda; Topbar’da arama ve profil menüsü.
+
+## Test & Kalite
+- Unit + Component + Integration (Vitest + Testing Library).
+- `npm run lint`, `npm run typecheck`, `npm run test`, `npm run prune:check` hatasız olmalı.
+- Pre-commit: lint + typecheck.
+
+## Performans
+- Sunucu tarafı öncelikli sorgular; react-query sadece gerekli yerde.
+- Sorguları pagination + filtre ile yap; kritik stok hesaplaması server’da.
+
+## API
+- RESTful handler’lar; doğru HTTP kodları.
+- Request/response Zod validasyonu; rate limit.
+
+## Database
+- Migrasyonlar sıralı; index ve foreign key’ler zorunlu.
+- Günlük yedek; aylık restore testi.
+
+## Monitoring & İş Metrikleri
+- Sentry (hata), basit analytics (kayıt/aktivasyon/abonelik dönüşüm).
+- Olay kaydı: stock_movement, transfer, checkout.
+
+## Cursor'a Özel Kurallar
+- **Browser aracı localhost'a bağlanamaz.** Gerekirse ngrok/cloudflared ile public URL üret.
+- "Temayı değiştir" gibi isteklerde eski sınıf/renkleri **silerek** güncelle.
+- Otomatik oluşturulan gereksiz dosyaları (ör. duplicate page) hemen kaldır.
+- **Dosya oluşturmadan önce kontrol et.** Yeni dosya oluşturmadan önce `read_file` ile var mı diye kontrol et.
+- **Mevcut dosyaları kullan.** Dosya varsa oluşturma, mevcut olanı kullan.
+
+## Port Kuralı - KRİTİK
+- Uygulama HER ZAMAN http://localhost:3000 adresinde çalışmalıdır
+- Başka port kullanılmamalı (3001, 3002 vs.)
+- Port 3000 kullanımda ise, o uygulamayı durdur
+- Sadece localhost:3000'de çalışmalı
+- Port 3000 boş değilse, zorla boşalt
+
+## Proje Başlatma Kuralı - KRİTİK
+- SADECE 1 TANE proje çalışmalı
+- Yeni proje başlatmadan ÖNCE mevcut projeyi KAPAT
+- `taskkill /f /im node.exe` ile tüm Node.js süreçlerini durdur
+- Sonra `npm run dev` ile başlat
+- Sürekli proje başlatma, sadece gerektiğinde başlat
+
+## Proje Adı - KRİTİK
+- Proje adı: AgroFormula
+- Tüm UI metinlerinde "AgroFormula" kullan
+- Logo ve branding'de "AgroFormula" yazısı
+- Sidebar'da "AgroFormula" logosu
