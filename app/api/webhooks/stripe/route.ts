@@ -26,7 +26,10 @@ export async function POST(req: NextRequest) {
 
   if (!supabase) {
     console.error('Failed to create Supabase client')
-    return NextResponse.json({ error: 'Database connection failed' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Database connection failed' },
+      { status: 500 }
+    )
   }
 
   try {
@@ -42,19 +45,21 @@ export async function POST(req: NextRequest) {
         }
 
         // Müşteri oluştur veya güncelle
-        const customer = await stripe.customers.retrieve(session.customer as string)
-        
+        const customer = await stripe.customers.retrieve(
+          session.customer as string
+        )
+
         // Abonelik oluştur
-        await supabase
-          .from('subscriptions')
-          .upsert({
-            org_id: orgId,
-            stripe_customer_id: session.customer as string,
-            stripe_subscription_id: session.subscription as string,
-            plan: plan,
-            status: 'active',
-            current_period_end: new Date(session.expires_at! * 1000).toISOString(),
-          })
+        await supabase.from('subscriptions').upsert({
+          org_id: orgId,
+          stripe_customer_id: session.customer as string,
+          stripe_subscription_id: session.subscription as string,
+          plan: plan,
+          status: 'active',
+          current_period_end: new Date(
+            session.expires_at! * 1000
+          ).toISOString(),
+        })
 
         console.log(`Subscription created for org ${orgId}`)
         break
@@ -73,7 +78,9 @@ export async function POST(req: NextRequest) {
           .from('subscriptions')
           .update({
             status: subscription.status,
-            current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            current_period_end: new Date(
+              subscription.current_period_end * 1000
+            ).toISOString(),
           })
           .eq('stripe_subscription_id', subscription.id)
 

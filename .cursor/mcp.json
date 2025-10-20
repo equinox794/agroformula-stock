@@ -2,10 +2,26 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp", "--api-key", "ctx7sk-f44af0d5-a2d5-4f83-9aa2-9a1e6b278667"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "ctx7sk-f44af0d5-a2d5-4f83-9aa2-9a1e6b278667"
+      ]
     },
     "supabase": {
       "url": "https://mcp.supabase.com/mcp"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "--root", "."]
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-91dc1e6bb08243a68c1735a5fd05d560"
+      }
     }
   }
 }
