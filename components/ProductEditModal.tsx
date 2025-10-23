@@ -115,6 +115,7 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
       setStockQuantity(totalStock)
     } else {
       setFormData({
+        id: '',
         code: '',
         name: '',
         type: 'Final',
