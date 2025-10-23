@@ -103,7 +103,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-text-muted">
-                  {t('pricing.starter.features', { returnObjects: true }).map((feature: string, index: number) => (
+                  {(t('pricing.starter.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
                     <li key={index}>• {feature}</li>
                   ))}
                 </ul>
@@ -121,7 +121,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-text-muted">
-                  {t('pricing.pro.features', { returnObjects: true }).map((feature: string, index: number) => (
+                  {(t('pricing.pro.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
                     <li key={index}>• {feature}</li>
                   ))}
                 </ul>
@@ -139,7 +139,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-text-muted">
-                  {t('pricing.business.features', { returnObjects: true }).map((feature: string, index: number) => (
+                  {(t('pricing.business.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
                     <li key={index}>• {feature}</li>
                   ))}
                 </ul>
