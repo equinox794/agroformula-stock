@@ -125,21 +125,20 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
         min_stock: 0
       })
       setStockQuantity(0)
+      // Yeni ürün için otomatik kod üret
+      if (isOpen) {
+        generateProductCode()
+      }
     }
     setError('')
   }, [product, isOpen])
 
   // Depoları yükle
   useEffect(() => {
-    loadWarehouses()
-  }, [])
-
-  // Otomatik kod üret (sadece yeni ürün için)
-  useEffect(() => {
-    if (!product?.id) {
-      generateProductCode()
+    if (isOpen) {
+      loadWarehouses()
     }
-  }, [isOpen, product])
+  }, [isOpen])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

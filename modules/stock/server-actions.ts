@@ -442,7 +442,8 @@ export async function updateStockQuantity(productId: string, warehouseId: string
         .insert({
           product_id: productId,
           warehouse_id: warehouseId,
-          quantity: quantity
+          quantity: quantity,
+          org_id: DEMO_ORG_ID
         })
 
       if (insertError) {
