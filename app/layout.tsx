@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import '../styles/theme.css'
 import { I18nProvider } from '@/components/I18nProvider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'AgroFormula | Modern Stock SaaS',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr" className="dark">
-      <body className={inter.className}>
+      <body className="font-sans antialiased">
         <I18nProvider>
           {children}
         </I18nProvider>

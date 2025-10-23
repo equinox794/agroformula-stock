@@ -27,6 +27,7 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
   const [error, setError] = useState('')
   
   const [formData, setFormData] = useState<Product>({
+    id: '',
     code: '',
     name: '',
     type: 'Final',
@@ -114,6 +115,7 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
       setStockQuantity(totalStock)
     } else {
       setFormData({
+        id: '',
         code: '',
         name: '',
         type: 'Final',

@@ -32,6 +32,9 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  // TypeScript flow analysis için supabase'i non-null olarak işaretle
+  const db = supabase
+
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
@@ -50,7 +53,7 @@ export async function POST(req: NextRequest) {
         )
 
         // Abonelik oluştur
-        await supabase.from('subscriptions').upsert({
+        await db.from('subscriptions').upsert({
           org_id: orgId,
           stripe_customer_id: session.customer as string,
           stripe_subscription_id: session.subscription as string,
@@ -74,7 +77,7 @@ export async function POST(req: NextRequest) {
           break
         }
 
-        await supabase
+        await db
           .from('subscriptions')
           .update({
             status: subscription.status,
@@ -97,7 +100,7 @@ export async function POST(req: NextRequest) {
           break
         }
 
-        await supabase
+        await db
           .from('subscriptions')
           .update({
             status: 'canceled',
@@ -113,7 +116,7 @@ export async function POST(req: NextRequest) {
         const subscriptionId = invoice.subscription as string
 
         if (subscriptionId) {
-          await supabase
+          await db
             .from('subscriptions')
             .update({
               status: 'active',
@@ -130,7 +133,7 @@ export async function POST(req: NextRequest) {
         const subscriptionId = invoice.subscription as string
 
         if (subscriptionId) {
-          await supabase
+          await db
             .from('subscriptions')
             .update({
               status: 'past_due',

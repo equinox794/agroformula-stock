@@ -8,6 +8,13 @@ import { redirect } from 'next/navigation'
 export async function createSubscription(orgId: string, planKey: string) {
   const supabase = await createClient()
 
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
+
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return {
@@ -54,6 +61,13 @@ export async function createSubscription(orgId: string, planKey: string) {
 
 export async function createPortalSession(orgId: string) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -113,6 +127,14 @@ export async function createPortalSession(orgId: string) {
 
 export async function getSubscriptionStatus(orgId: string) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      status: 'inactive',
+      plan: null,
+      currentPeriodEnd: null,
+    }
+  }
 
   const { data: subscription } = await supabase
     .from('subscriptions')

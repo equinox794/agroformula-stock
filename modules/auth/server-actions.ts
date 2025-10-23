@@ -8,6 +8,13 @@ import { redirect } from 'next/navigation'
 export async function signIn(formData: FormData) {
   const supabase = await createClient()
 
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
+
   const validatedFields = signInSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
@@ -41,6 +48,13 @@ export async function signIn(formData: FormData) {
 
 export async function signUp(formData: FormData) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const validatedFields = signUpSchema.safeParse({
     email: formData.get('email'),
@@ -145,6 +159,12 @@ export async function signUp(formData: FormData) {
 
 export async function signOut() {
   const supabase = await createClient()
+
+  if (!supabase) {
+    redirect('/sign-in')
+    return
+  }
+
   await supabase.auth.signOut()
   revalidatePath('/', 'layout')
   redirect('/sign-in')
@@ -152,6 +172,13 @@ export async function signOut() {
 
 export async function updateProfile(formData: FormData) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -202,6 +229,13 @@ export async function updateProfile(formData: FormData) {
 
 export async function resetPassword(email: string) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/reset-password`,

@@ -219,7 +219,11 @@ export async function deleteProduct(id: string) {
 export async function getProduct(id: string) {
   try {
     const supabase = await createClient()
-    
+
+    if (!supabase) {
+      return { success: false, error: 'Veritabanı bağlantısı kurulamadı' }
+    }
+
     const { data, error } = await supabase
       .from('products')
       .select('*')

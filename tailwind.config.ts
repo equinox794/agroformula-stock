@@ -20,7 +20,6 @@ const config: Config = {
       colors: {
         bg: 'var(--bg)',
         panel: 'var(--panel)',
-        muted: 'var(--muted)',
         text: 'var(--text)',
         'text-muted': 'var(--text-muted)',
         primary: 'var(--primary)',

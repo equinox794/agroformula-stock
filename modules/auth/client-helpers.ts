@@ -10,6 +10,11 @@ export function useAuth() {
   const supabase = createClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
@@ -26,7 +31,7 @@ export function useAuth() {
     )
 
     return () => subscription.unsubscribe()
-  }, [supabase.auth])
+  }, [supabase])
 
   return { user, loading }
 }
@@ -37,6 +42,11 @@ export function useProfile() {
   const supabase = createClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const getProfile = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
@@ -62,6 +72,11 @@ export function useOrganizations() {
   const supabase = createClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const getOrganizations = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
@@ -94,6 +109,11 @@ export function useCurrentOrganization() {
   const supabase = createClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const getCurrentOrg = async () => {
       const orgId = localStorage.getItem('currentOrgId')
       if (orgId) {

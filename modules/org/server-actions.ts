@@ -7,6 +7,13 @@ import { revalidatePath } from 'next/cache'
 export async function createOrganization(formData: FormData) {
   const supabase = await createClient()
 
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
+
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return {
@@ -89,6 +96,13 @@ export async function createOrganization(formData: FormData) {
 export async function updateOrganization(orgId: string, formData: FormData) {
   const supabase = await createClient()
 
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
+
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return {
@@ -132,6 +146,13 @@ export async function updateOrganization(orgId: string, formData: FormData) {
 
 export async function addMember(orgId: string, formData: FormData) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -196,6 +217,13 @@ export async function addMember(orgId: string, formData: FormData) {
 export async function updateMemberRole(orgId: string, userId: string, role: string) {
   const supabase = await createClient()
 
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
+
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return {
@@ -241,6 +269,13 @@ export async function updateMemberRole(orgId: string, userId: string, role: stri
 
 export async function removeMember(orgId: string, userId: string) {
   const supabase = await createClient()
+
+  if (!supabase) {
+    return {
+      success: false,
+      message: 'Veritabanı bağlantısı kurulamadı.',
+    }
+  }
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
