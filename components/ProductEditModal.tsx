@@ -65,17 +65,23 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
   const generateProductCode = async () => {
     if (!product?.id) { // Sadece yeni ürün için
       try {
+        console.log('🔄 Ürün kodu üretiliyor...')
         const result = await getProducts()
+        console.log('📦 Ürünler alındı:', result)
+
         if (result.success && result.data) {
           const agCodes = result.data
             .filter(p => p.code && p.code.startsWith('AG'))
             .map(p => p.code)
             .sort((a, b) => b.localeCompare(a))
 
+          console.log('📋 Mevcut AG kodları:', agCodes)
+
           let newCode = 'AG001' // Varsayılan kod
-          
+
           if (agCodes.length > 0) {
             const lastCode = agCodes[0]
+            console.log('🔢 Son kod:', lastCode)
             const match = lastCode.match(/(\d+)/)
             if (match) {
               const nextNumber = parseInt(match[1], 10) + 1
@@ -98,47 +104,51 @@ export function ProductEditModal({ isOpen, onClose, product, onSuccess }: Produc
             }
           }
 
+          console.log('✅ Oluşturulan kod:', finalCode)
           setFormData(prev => ({ ...prev, code: finalCode }))
         }
       } catch (error) {
-        console.error('Ürün kodu üretilemedi:', error)
+        console.error('❌ Ürün kodu üretilemedi:', error)
       }
+    } else {
+      console.log('⚠️ Mevcut ürün düzenleniyor, kod üretilmeyecek')
     }
   }
 
-  // Form'u product verisiyle doldur
+  // Form'u product verisiyle doldur ve kod üret
   useEffect(() => {
-    if (product) {
-      setFormData(product)
-      // Mevcut stok miktarını hesapla
-      const totalStock = product.stocks?.reduce((sum, stock) => sum + stock.quantity, 0) || 0
-      setStockQuantity(totalStock)
-    } else {
-      setFormData({
-        id: '',
-        code: '',
-        name: '',
-        type: 'Final',
-        unit: 'kg',
-        vat_rate: 0,
-        kg_price: 0,
-        min_stock: 0
-      })
-      setStockQuantity(0)
-      // Yeni ürün için otomatik kod üret
-      if (isOpen) {
-        generateProductCode()
+    const initializeForm = async () => {
+      if (product) {
+        setFormData(product)
+        // Mevcut stok miktarını hesapla
+        const totalStock = product.stocks?.reduce((sum, stock) => sum + stock.quantity, 0) || 0
+        setStockQuantity(totalStock)
+      } else {
+        // Önce formu sıfırla
+        setFormData({
+          id: '',
+          code: '',
+          name: '',
+          type: 'Final',
+          unit: 'kg',
+          vat_rate: 0,
+          kg_price: 0,
+          min_stock: 0
+        })
+        setStockQuantity(0)
+        // Sonra yeni ürün için otomatik kod üret
+        if (isOpen) {
+          await generateProductCode()
+        }
       }
+      setError('')
     }
-    setError('')
-  }, [product, isOpen])
 
-  // Depoları yükle
-  useEffect(() => {
     if (isOpen) {
+      initializeForm()
       loadWarehouses()
     }
-  }, [isOpen])
+  }, [product, isOpen])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
